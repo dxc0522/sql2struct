@@ -67,8 +67,8 @@ func init() {
 	rootCmd.PersistentFlags().StringVarP(&config.Cnf.TablePrefix, "prefix", "p", "", "table prefixed with the table name")
 	rootCmd.PersistentFlags().BoolVarP(&config.Cnf.WithJsonTag, "with_json_tag", "j", true, "with json tag. default: true")
 	rootCmd.PersistentFlags().BoolVarP(&config.Cnf.WithDefaultValue, "with_default_value", "", false, "with db default value. default: false")
-	rootCmd.PersistentFlags().StringVarP(&config.Cnf.OutputDir, "output_dir", "o", "./model", "output dir. default: ./model")
-	rootCmd.PersistentFlags().StringArrayVarP(&config.Cnf.TableRegexs, "table_regexs", "t", nil, "Need to generate table names regexs, default is all tables. (eg: -t table1 -t table2)")
+	rootCmd.PersistentFlags().StringVarP(&config.Cnf.OutputDir, "output_dir", "o", "./dbmodel", "output dir. default: ./model")
+	rootCmd.PersistentFlags().StringVarP(&config.Cnf.TableRegexs, "table_regexs", "t", "", "Need to generate table names regexs, default is all tables. (eg: -t table1,table2)")
 
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.

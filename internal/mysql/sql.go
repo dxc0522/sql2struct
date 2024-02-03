@@ -16,6 +16,7 @@ var MysqlType2GoType = map[string]string{
 	"decimal":   "float64",
 	"bigint":    "int64",
 	"varchar":   "string",
+	"enum":      "string",
 	"char":      "string",
 	"text":      "string",
 	"date":      "time.Time",
