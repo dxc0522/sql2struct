@@ -1,13 +1,16 @@
 package cmd
 
 import (
+	"fmt"
+	"github.com/spf13/cobra"
+	"log"
 	"os"
 
-	"github.com/spf13/cobra"
 	"github.com/starfishs/sql2struct/config"
 	"github.com/starfishs/sql2struct/internal/driver"
 	"github.com/starfishs/sql2struct/internal/infra"
 	"github.com/starfishs/sql2struct/utils"
+	"gopkg.in/yaml.v2"
 )
 
 // rootCmd represents the base command when called without any subcommands
@@ -21,9 +24,21 @@ var rootCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		// Do Stuff Here
 		if config.Cnf.DSN == "" {
-			utils.PrintRed("dsn is empty")
-			_ = cmd.Help()
-			os.Exit(1)
+			content, err := os.ReadFile("./etc/config.yaml")
+			if err != nil {
+				log.Fatalf("Failed to read file: %s", err)
+			}
+			var yamlConfig YAMLConfig
+			err = yaml.Unmarshal(content, &yamlConfig)
+			if err != nil {
+				log.Fatalf("Failed to parse YAML: %s", err)
+			}
+			if yamlConfig.DBConfig.DriverName == "" || yamlConfig.DBConfig.Database == "" {
+				utils.PrintRed("dsn is empty")
+				_ = cmd.Help()
+				os.Exit(1)
+			}
+			config.Cnf.DSN = fmt.Sprintf("%s://%s", yamlConfig.DBConfig.DriverName, yamlConfig.DBConfig.Database)
 		}
 		driverName, dsn, err := utils.ParseDsn(config.Cnf.DSN)
 		if err != nil {
@@ -73,4 +88,12 @@ func init() {
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
 
+}
+
+type YAMLConfig struct {
+	DBConfig DBConfig `yaml:"DBConfig"`
+}
+type DBConfig struct {
+	DriverName string `yaml:"DriverName"`
+	Database   string `yaml:"Database"`
 }

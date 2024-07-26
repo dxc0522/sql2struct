@@ -55,3 +55,8 @@ docker run  -v /path/to/store:/workspace -w /workspace  starfishsfive/sql2struct
     </td></tr>
 </table>
 <!-- readme: contributors -end -->
+
+--dsn
+"mysql://root:123456@tcp(127.0.0.1:3306)/local?charset=utf8mb4&parseTime=True&loc=Local"
+-t
+"user,to_do"
