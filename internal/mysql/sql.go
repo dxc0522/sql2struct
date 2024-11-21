@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/starfishs/sql2struct/config"
-	"github.com/starfishs/sql2struct/internal/infra"
-	"github.com/starfishs/sql2struct/internal/table"
-	"github.com/starfishs/sql2struct/utils"
+	"github.com/dxc0522/sql2struct/config"
+	"github.com/dxc0522/sql2struct/internal/infra"
+	"github.com/dxc0522/sql2struct/internal/table"
+	"github.com/dxc0522/sql2struct/utils"
 )
 
 var MysqlType2GoType = map[string]string{

@@ -1,9 +1,9 @@
 package driver
 
 import (
-	mysqlparser "github.com/starfishs/sql2struct/internal/mysql"
-	"github.com/starfishs/sql2struct/internal/postgresql"
-	"github.com/starfishs/sql2struct/utils"
+	mysqlparser "github.com/dxc0522/sql2struct/internal/mysql"
+	"github.com/dxc0522/sql2struct/internal/postgresql"
+	"github.com/dxc0522/sql2struct/utils"
 )
 
 type ModelGenerator interface {

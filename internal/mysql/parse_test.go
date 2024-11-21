@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/starfishs/sql2struct/config"
+	"github.com/dxc0522/sql2struct/config"
 )
 
 func TestMysqlGenerateFile(t *testing.T) {

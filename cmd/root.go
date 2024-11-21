@@ -5,10 +5,10 @@ import (
 	"log"
 	"os"
 
-	"github.com/starfishs/sql2struct/config"
-	"github.com/starfishs/sql2struct/internal/driver"
-	"github.com/starfishs/sql2struct/internal/infra"
-	"github.com/starfishs/sql2struct/utils"
+	"github.com/dxc0522/sql2struct/config"
+	"github.com/dxc0522/sql2struct/internal/driver"
+	"github.com/dxc0522/sql2struct/internal/infra"
+	"github.com/dxc0522/sql2struct/utils"
 	"gopkg.in/yaml.v2"
 )
 

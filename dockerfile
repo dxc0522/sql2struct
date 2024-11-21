@@ -1,6 +1,6 @@
 FROM golang:alpine AS build
 
-LABEL author=starfishsfive@gmail.com
+LABEL author=dou916688@gmail.com
 ARG APP_VERSION
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
 RUN go env -w GOPROXY=https://goproxy.cn,direct
