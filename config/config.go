@@ -9,8 +9,8 @@ type Config struct {
 	TablePrefix      string `yaml:"table_prefix"`       // table prefixed with the table name
 	DBTag            string `yaml:"db_tag"`             // db tag. default: gorm
 	WithJsonTag      bool   `yaml:"with_json_tag"`      // with json tag. default: true
-	OutputDir        string `yaml:"output_dir"`         // output dir. default: ./model
-	PackageName      string `yaml:"package_name"`       // package name. default: model
+	OutputDir        string `yaml:"output_dir"`         // output dir. default: ./dbmodel
+	PackageName      string `yaml:"package_name"`       // package name. default: dbmodel
 	WithDefaultValue bool   `yaml:"with_default_value"` // with default value. default: false
 }
 

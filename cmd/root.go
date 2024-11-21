@@ -1,7 +1,6 @@
 package cmd
 
 import (
-	"fmt"
 	"github.com/spf13/cobra"
 	"log"
 	"os"
@@ -33,12 +32,12 @@ var rootCmd = &cobra.Command{
 			if err != nil {
 				log.Fatalf("Failed to parse YAML: %s", err)
 			}
-			if yamlConfig.DBConfig.DriverName == "" || yamlConfig.DBConfig.Database == "" {
+			if yamlConfig.DBConfig.DSN == "" {
 				utils.PrintRed("dsn is empty")
 				_ = cmd.Help()
 				os.Exit(1)
 			}
-			config.Cnf.DSN = fmt.Sprintf("%s://%s", yamlConfig.DBConfig.DriverName, yamlConfig.DBConfig.Database)
+			config.Cnf.DSN = yamlConfig.DBConfig.DSN
 		}
 		driverName, dsn, err := utils.ParseDsn(config.Cnf.DSN)
 		if err != nil {
@@ -94,6 +93,5 @@ type YAMLConfig struct {
 	DBConfig DBConfig `yaml:"DBConfig"`
 }
 type DBConfig struct {
-	DriverName string `yaml:"DriverName"`
-	Database   string `yaml:"Database"`
+	DSN string `yaml:"DSN"`
 }
