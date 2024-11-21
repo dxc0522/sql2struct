@@ -1,7 +1,5 @@
-[![Build Status](https://travis-ci.org/dxc0522/sql2struct.svg?branch=main)](https://travis-ci.org/dxc0522/sql2struct)
 [![Go Report Card](https://goreportcard.com/badge/github.com/dxc0522/sql2struct)](https://goreportcard.com/report/github.com/dxc0522/sql2struct)
 [![GoDoc](https://godoc.org/github.com/dxc0522/sql2struct?status.svg)](https://godoc.org/github.com/dxc0522/sql2struct)
-[![codecov](https://codecov.io/gh/dxc0522/sql2struct/branch/main/graph/badge.svg)](https://codecov.io/gh/dxc0522/sql2struct)
 ![License](https://img.shields.io/badge/license-GPL-blue.svg)
 # sql2struct
 mysql/postgresql database to golang struct for gorm model
