@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"fmt"
 	"github.com/spf13/cobra"
 	"log"
 	"os"
@@ -37,7 +38,7 @@ var rootCmd = &cobra.Command{
 				_ = cmd.Help()
 				os.Exit(1)
 			}
-			config.Cnf.DSN = yamlConfig.DBConfig.DSN
+			config.Cnf.DSN = fmt.Sprintf("%s://%s", yamlConfig.DBConfig.DriverName, yamlConfig.DBConfig.DSN)
 		}
 		driverName, dsn, err := utils.ParseDsn(config.Cnf.DSN)
 		if err != nil {
@@ -75,7 +76,9 @@ func init() {
 
 	//rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.sql2struct.yaml)")
 
-	rootCmd.PersistentFlags().StringVar(&config.Cnf.DSN, "dsn", "", "database dsn string (eg: root:123456@tcp(localhost:3306)/test?charset=utf8)")
+	rootCmd.PersistentFlags().StringVar(&config.Cnf.DSN, "dsn", "", "database dsn string (eg: root:123456@tcp(localhost:3306)/test?charset=utf8) "+
+		"\n if empty wil read $HOME/etc/config.yaml\n"+
+		"  DBConfig:\n    DriverName: mysql\n    DSN: root:123456@tcp(127.0.0.1:3306)/local?charset=utf8mb4&parseTime=True&loc=Asia%2FShanghai")
 	_ = rootCmd.MarkFlagRequired("dsn")
 	rootCmd.PersistentFlags().StringVarP(&config.Cnf.DBTag, "dbtag", "g", "gorm", "db tag. default: gorm")
 	rootCmd.PersistentFlags().StringVarP(&config.Cnf.TablePrefix, "prefix", "p", "", "table prefixed with the table name")
@@ -93,5 +96,6 @@ type YAMLConfig struct {
 	DBConfig DBConfig `yaml:"DBConfig"`
 }
 type DBConfig struct {
-	DSN string `yaml:"DSN"`
+	DSN        string `yaml:"DSN"`
+	DriverName string `yaml:"DriverName"`
 }
